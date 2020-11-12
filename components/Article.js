@@ -87,6 +87,14 @@ const data = [
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
+  {
+    title: 'New Inventions!!!!',
+    date: 'Nov 11th, 2020',
+    firstParagraph:`Im number one`,
+    secondParagraph:`Im number two.`,
+    thirdParargraph: `Im number three.`
+  }
+
 ];
 
 /*
@@ -114,3 +122,41 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articles = document.querySelector('articles')
+data.forEach(item => {
+  articles.appendChild(articleMaker (item))
+})
+
+function articleMaker(articleObj){
+  const article = document.createElement('div');
+  article.classList.add('article');
+const h2 = document.createElement('h2');
+article.textContent=articleObj.title;
+article.appendChild(h2);
+const date=document.createElement('p');
+date.classList.add('date');
+date.textContent=articleObj.date;
+  article.appendChild(date);
+  const p1=document.createElement('p');
+  p1.textContent=articleObj.firstParagraph;
+  article.appendChild(p1);
+  const p2=document.createElement('p');
+  p2.textContent=articleObj.secondParagraph;
+  article.appendChild(p2);
+  const p3=document.createElement('p');
+  p3.textContent=articleObj.thirdParagraph;
+  article.appendChild(p3);
+  const span=document.createElement('span');
+  span.textContent="+";
+  span.classList.add('expandButton');
+  article.appendChild(span);
+
+  // Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
+  // This listener should toggle the class 'article-open' on div.article.
+  span.addEventListener('click',()=>{
+    article.classList.toggle('article-open');
+  })
+  
+    return article;
+}
